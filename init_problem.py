@@ -3,12 +3,13 @@ import sys
 import xml.dom.minidom
 import re
 
-def getDir(fileDir):
-	t=fileDir.split("/")
-	Dir=""
-	for i in t[:-1]:
-		Dir+=i+"/"
-	return (Dir,t[-1:][0])
+#def getDir(fileDir):
+#	Dir=fileDir.path.split()
+#	t=fileDir.split(os.sep)
+#	Dir=""
+#	for i in t[:-1]:
+#		Dir+=i+os.sep
+#	return (Dir,t[-1:][0])
 
 def getList(Dir,File,regexList):
 	a,b,List=re.compile(r"\<\d*\>"),0,[]
@@ -27,9 +28,11 @@ def initProblem(srcName,inPattern,outPattern,checkerCmd,regexList):
 	root.setAttribute("name",srcName)
 	dataConf.appendChild(root)
 
-	inDir,inFile=getDir(inPattern)
-	outDir,outFile=getDir(outPattern)
-
+#	inDir,inFile=getDir(inPattern)
+#	outDir,outFile=getDir(outPattern)
+	inDir,inFile=inPattern.path.split()
+	outDir,outFile=outPattern.path.split()
+	
 	inList=getList(inDir,inFile,regexList)
 	outList=getList(outDir,outFile,regexList)
 	inList.sort();outList.sort()

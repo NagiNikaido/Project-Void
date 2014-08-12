@@ -18,8 +18,8 @@ def Run(srcName,dataList,checkOpt):
 		os.remove(srcName+".in")
 		os.remove(srcName+".ans")
 		os.remove(srcName+".out")
-	os.system("rm .nil")
-	os.system("rm ./"+srcName)
+	os.remove(".nil")
+	os.remove("./"+srcName)
 
 dataConf=xml.dom.minidom.parse("dataconf.xml")
 root=dataConf.documentElement;
@@ -27,7 +27,7 @@ srcName,checker_cmd=root.getAttribute("name"),root.getAttribute("checker_cmd")
 
 opt="diff "+srcName+".out "+srcName+".ans -Z -B > .nil"
 if checker_cmd!="":
-	opt=checker_cmd+" "+srcName+".in "+srcName+".out"+srcName+".ans > .nil"
+	opt=checker_cmd+" "+srcName+".in "+srcName+".out "+srcName+".ans > .nil"
 
 dataList=[]
 for i in root.getElementsByTagName("data"):
