@@ -7,6 +7,8 @@ Project-Void
 
 Changelog
 ================
+2014.8.16 修复了**init_problem.py**的bug。
+
 2014.8.12 修复了使用checker时会崩溃的bug。
 
 2014.8.9   添加了**init_problem.py**，支持使用正则表达式自动生成**dataconf.xml**文件。

@@ -30,23 +30,23 @@ def initProblem(srcName,inPattern,outPattern,checkerCmd,regexList):
 
 #	inDir,inFile=getDir(inPattern)
 #	outDir,outFile=getDir(outPattern)
-	inDir,inFile=inPattern.path.split()
-	outDir,outFile=outPattern.path.split()
+	inDir,inFile=os.path.split(inPattern)
+	outDir,outFile=os.path.split(outPattern)
 	
 	inList=getList(inDir,inFile,regexList)
 	outList=getList(outDir,outFile,regexList)
 	inList.sort();outList.sort()
 	for i in range(len(inList)):
 		t=dataConf.createElement("data")
-		t.setAttribute("in",inDir+inList[i])
-		t.setAttribute("out",outDir+outList[i])
+		t.setAttribute("in",inDir+os.sep+inList[i])
+		t.setAttribute("out",outDir+os.sep+outList[i])
 		root.appendChild(t)
 	confFile=open("dataconf.xml","w")
 	dataConf.writexml(confFile,"","\t","\n","utf-8")
 
 if __name__=="__main__":
 	if len(sys.argv)<4:
-		print("Usage: python init_problem.py srcName inputFileNamePattern outputFileNamePattern [checker_cmd=\"...\" <1>=regex1 <2>=regex2 ...]")
+		print("Usage: python init_problem.py srcName inputFileNamePattern outputFileNamePattern [checker_cmd=\"...\" \"<1>=regex1\" \"<2>=regex2\" ...]")
 		print("       python3 is ok.")
 	else:
 		srcName,inPattern,outPattern=sys.argv[1],sys.argv[2],sys.argv[3]
